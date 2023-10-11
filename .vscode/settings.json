@@ -6,5 +6,8 @@
     "biome.lspBin": "node_modules/@biomejs/cli-win32-x64/biome.exe",
     "[typescript]": {
         "editor.defaultFormatter": "biomejs.biome"
-    }
+    },
+    "conventionalCommits.scopes": [
+        "root"
+    ]
 }
