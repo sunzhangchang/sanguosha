@@ -1,9 +1,12 @@
 {
+    "biome.lspBin": "node_modules/@biomejs/cli-win32-x64/biome.exe",
     "editor.defaultFormatter": "biomejs.biome",
     "[json]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
-    "biome.lspBin": "node_modules/@biomejs/cli-win32-x64/biome.exe",
+    "[jsonc]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
     "[typescript]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
