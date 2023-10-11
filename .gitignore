@@ -131,7 +131,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# backend
-backend/tmp_index.ts
-
 **/dist
