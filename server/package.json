@@ -1,0 +1,22 @@
+{
+    "name": "@punishing-killing/server",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node ./scripts/build.mjs"
+    },
+    "keywords": [],
+    "author": "Cyanogenaq",
+    "license": "MIT",
+    "dependencies": {
+        "@koa/cors": "^4.0.0",
+        "@punishing-killing/common": "workspace:^",
+        "koa": "^2.14.2",
+        "socket.io": "^4.7.2"
+    },
+    "devDependencies": {
+        "@types/koa": "^2.13.9",
+        "@types/koa__cors": "^4.0.1"
+    }
+}

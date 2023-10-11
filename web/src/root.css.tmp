@@ -1,0 +1,60 @@
+`
+        @font-face {
+            font-family: 'LXGWWenKai';
+            src: url('/LXGWWenKai-Regular.ttf') format('truetype');
+        }
+
+        * {
+            font-family: 'LXGWWenKai', 'consolas';
+        }
+
+        @media (min-width: 1px) {
+            html {
+                font-size: 6px
+            }
+        }
+
+        @media (min-width: 576px) {
+            html {
+                font-size: 8px
+            }
+        }
+
+        @media (min-width: 768px) {
+            html {
+                font-size: 10px
+            }
+        }
+
+        @media (min-width: 1000px) {
+            html {
+                font-size: 13px
+            }
+        }
+
+        @media (min-width: 1600px) {
+            html {
+                font-size: 16px
+            }
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        #root {
+            height: 100%;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: inherit;
+        }
+    

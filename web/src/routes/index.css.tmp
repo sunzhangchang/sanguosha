@@ -1,0 +1,25 @@
+.home > .game-title {
+    align-items: center;
+
+    margin: 18vh auto 10vh auto;
+
+    font-size: 1.8rem;
+
+    user-select: none;
+}
+
+.home > .item {
+    align-items: center;
+
+    margin: 5vh;
+
+    font-size: 1.4rem;
+}
+
+.item button {
+    height: 5vh;
+    width: 10vh;
+
+    min-height: 30px;
+    min-width: 80px;
+}

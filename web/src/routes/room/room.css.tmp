@@ -1,0 +1,35 @@
+.room {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+
+    margin: 4px;
+    padding: 2px;
+
+    font-size: 2.4vh;
+
+    align-items: center;
+    height: 15vh;
+}
+
+.info-container div {
+    margin: 8px;
+    padding: 2px;
+}
+
+.room > .item {
+    display: flex;
+    justify-content: center;
+
+    margin: 4px;
+    padding: 2px;
+
+    font-size: 2.8vh;
+
+    align-items: center;
+    height: 15vh;
+}

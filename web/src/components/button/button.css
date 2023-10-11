@@ -1,0 +1,28 @@
+.btn {
+    height: 35px;
+    width: 80px;
+    padding: 2px;
+
+    margin: 2px;
+
+    font-size: inherit;
+
+    background: rgba(128, 128, 128, .15);
+    border-left: rgba(128, 128, 128, .25) solid 2px;
+    border-bottom: rgba(128, 128, 128, .65) solid 2px;
+    border-top: none;
+    border-right: none;
+    transform: skew(-10deg);
+}
+
+.btn:hover {
+    background: rgba(128, 128, 128, .25);
+    border-left: rgba(128, 128, 128, .35) solid 2px;
+    border-bottom: rgba(128, 128, 128, .75) solid 2px;
+}
+
+.btn:active {
+    background: rgba(128, 128, 128, .35);
+    border-left: rgba(128, 128, 128, .45) solid 2px;
+    border-bottom: rgba(128, 128, 128, .85) solid 2px;
+}

@@ -1,0 +1,10 @@
+{
+    "editor.defaultFormatter": "biomejs.biome",
+    "[json]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "biome.lspBin": "node_modules/@biomejs/cli-win32-x64/biome.exe",
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    }
+}
