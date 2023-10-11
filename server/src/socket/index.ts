@@ -5,7 +5,7 @@ import {
     JoinRoomData,
     ServerEmitEventsMap,
     ServerListenEventsMap,
-} from '@punishing-killing/common'
+} from '@thriving/shared'
 import { RoomManager } from '../room/manager'
 
 const handleJoinRoom = (

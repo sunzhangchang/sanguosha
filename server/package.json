@@ -1,5 +1,5 @@
 {
-    "name": "@punishing-killing/server",
+    "name": "@thriving/server",
     "version": "0.0.0",
     "description": "",
     "main": "index.js",
@@ -11,7 +11,7 @@
     "license": "MIT",
     "dependencies": {
         "@koa/cors": "^4.0.0",
-        "@punishing-killing/common": "workspace:^",
+        "@thriving/shared": "workspace:^",
         "koa": "^2.14.2",
         "socket.io": "^4.7.2"
     },

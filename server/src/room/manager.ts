@@ -1,7 +1,7 @@
 import { randomInt } from 'crypto'
 import { Player } from '../game/player'
 import { Game } from '../game'
-import { GameMode } from '@punishing-killing/common'
+import { GameMode } from '@thriving/shared'
 
 export class Room {
     readonly id: string

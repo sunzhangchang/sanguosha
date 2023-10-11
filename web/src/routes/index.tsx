@@ -2,7 +2,7 @@
 
 import { createSignal, type Component } from 'solid-js'
 import socket from '../socket'
-import { Event } from '@punishing-killing/common'
+import { Event } from '@thriving/shared'
 import { Button } from '../components/button'
 import { Input } from '../components/input'
 import { useNavigate } from 'solid-start'
@@ -34,7 +34,7 @@ const Home: Component = () => {
 
     return (
         <div class={home}>
-            <div class={gameTitle}>Punishing Killing</div>
+            <div class={gameTitle}>蒸蒸日上</div>
             <div class={item}>
                 <span style={{ 'user-select': 'none' }}>游戏名</span>
                 <Input

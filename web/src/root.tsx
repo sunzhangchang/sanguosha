@@ -17,7 +17,7 @@ const Root: Component = () => {
     return (
         <Html lang="en">
             <Head>
-                <Title>Punishing Killing</Title>
+                <Title>蒸蒸日上</Title>
                 <Meta charset="utf-8" />
                 <Meta
                     name="viewport"

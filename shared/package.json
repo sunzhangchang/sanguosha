@@ -1,5 +1,5 @@
 {
-    "name": "@punishing-killing/common",
+    "name": "@thriving/shared",
     "version": "0.0.0",
     "description": "",
     "main": "./src/index.ts",

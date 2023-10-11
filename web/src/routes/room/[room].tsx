@@ -1,6 +1,6 @@
 import './room.css'
 
-import { Event, RoomData } from '@punishing-killing/common'
+import { Event, RoomData } from '@thriving/shared'
 import { Component, Show } from 'solid-js'
 import { Button } from '../../components/button'
 import { createStore } from 'solid-js/store'
