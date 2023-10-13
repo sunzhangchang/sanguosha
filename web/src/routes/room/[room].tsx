@@ -5,9 +5,15 @@ import { Component, Show } from 'solid-js'
 import { Button } from '../../components/button'
 import { createStore } from 'solid-js/store'
 import socket from '../../socket'
-import { useLocation, useParams } from 'solid-start'
-import { A, Location } from '@solidjs/router'
-import { actionItem, infoContainer, infoItem, room } from './room.css'
+import { useLocation, useNavigate, useParams } from 'solid-start'
+import { Location } from '@solidjs/router'
+import {
+    actionButton,
+    actionItem,
+    infoContainer,
+    infoItem,
+    room,
+} from './room.css'
 
 const Room: Component = () => {
     const params = useParams<{ room: string }>()
@@ -33,6 +39,12 @@ const Room: Component = () => {
         setIsReady(joiningPlayer, joiningPlayer === playerName)
     })
 
+    const navigate = useNavigate()
+
+    const returnToHome = () => {
+        navigate('/')
+    }
+
     return (
         <div class={room}>
             <Show
@@ -43,7 +55,7 @@ const Room: Component = () => {
                 fallback={
                     <div>
                         <div class="error">似乎出现了一点问题</div>
-                        <A href="/">返回主界面</A>
+                        <Button onClick={returnToHome}>返回主界面</Button>
                     </div>
                 }
             >
@@ -73,8 +85,7 @@ const Room: Component = () => {
                         }
                     >
                         <Button
-                            h="5vh"
-                            w="10vw"
+                            class={actionButton}
                             disabled={() =>
                                 !Object.entries(isReady).every(([k, v]) => v)
                             }
@@ -84,8 +95,8 @@ const Room: Component = () => {
                     </Show>
                 </div>
                 <div class={actionItem}>
-                    <Button h="5vh" w="10vw">
-                        <A href="/">返回主界面</A>
+                    <Button class={actionButton} onClick={returnToHome}>
+                        返回主界面
                     </Button>
                 </div>
             </Show>

@@ -1,6 +1,4 @@
 .btn {
-    height: 35px;
-    width: 80px;
     padding: 2px;
 
     margin: 2px;
@@ -12,13 +10,17 @@
     border-bottom: rgba(128, 128, 128, .65) solid 2px;
     border-top: none;
     border-right: none;
-    transform: skew(-10deg);
+
+    /* transform: skew(-10deg); */
+    border-radius: 4px;
 }
 
 .btn:hover {
     background: rgba(128, 128, 128, .25);
     border-left: rgba(128, 128, 128, .35) solid 2px;
     border-bottom: rgba(128, 128, 128, .75) solid 2px;
+
+    cursor: pointer;
 }
 
 .btn:active {

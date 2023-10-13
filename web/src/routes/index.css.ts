@@ -7,7 +7,7 @@ export const home = style({
 
 export const gameTitle = style({
     alignItems: 'center',
-    margin: '18vh auto 10vh auto',
+    margin: '18vh auto 8vh auto',
     fontSize: '1.8rem',
     userSelect: 'none',
 })

@@ -1,16 +1,18 @@
 // import './index.css'
 
-import { createSignal, type Component } from 'solid-js'
+import { createSignal, type Component, Show } from 'solid-js'
 import socket from '../socket'
 import { Event } from '@thriving/shared'
 import { Button } from '../components/button'
 import { Input } from '../components/input'
 import { useNavigate } from 'solid-start'
 import { button, gameTitle, home, item } from './index.css'
+import { createInputMask } from '@solid-primitives/input-mask'
 
 const Home: Component = () => {
     const navigate = useNavigate()
 
+    const playerNameMask = createInputMask([/([\da-zA-Z]|[^\x00-\xff]){0,16}/])
     const [playerName, setPlayerName] = createSignal('')
 
     const createRoom = () => {
@@ -32,6 +34,26 @@ const Home: Component = () => {
         })
     })
 
+    const roomIDMask = createInputMask('999999')
+
+    const [roomID, setRoomID] = createSignal('')
+
+    const joinRoom = () => {
+        console.log(playerName().trim())
+        if (playerName().trim().length > 0 && /[\d]{6}/.test(roomID())) {
+            socket.emit(Event.JoinRoom, {
+                playerName: playerName(),
+                roomID: roomID(),
+            })
+        }
+    }
+
+    socket.on(Event.JoinRoom, (name) => {
+        if (name === playerName()) {
+            navigate(`/room/${roomID()}`)
+        }
+    })
+
     return (
         <div class={home}>
             <div class={gameTitle}>蒸蒸日上</div>
@@ -44,16 +66,39 @@ const Home: Component = () => {
                         'min-height': '18px',
                         'min-width': '100px',
                     }}
-                    onInput={(e) => setPlayerName(e.currentTarget.value)}
+                    onInput={(e) => setPlayerName(playerNameMask(e))}
                 />
             </div>
             <div class={item}>
-                <Button class={button} onClick={createRoom}>
+                <Button
+                    class={button}
+                    disabled={() => playerName().length === 0}
+                    onClick={createRoom}
+                >
                     创建房间
                 </Button>
             </div>
             <div class={item}>
-                <Button class={button}>加入房间</Button>
+                <span style={{ 'user-select': 'none' }}>房间号</span>
+                <Input
+                    h="4vh"
+                    w="18vw"
+                    style={{
+                        'min-height': '18px',
+                        'min-width': '100px',
+                    }}
+                    onInput={(e) => setRoomID(roomIDMask(e))}
+                    onPaste={(e) => setRoomID(roomIDMask(e))}
+                />
+            </div>
+            <div class={item}>
+                <Button
+                    disabled={() => roomID().length < 6}
+                    class={button}
+                    onClick={joinRoom}
+                >
+                    加入房间
+                </Button>
             </div>
         </div>
     )

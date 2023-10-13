@@ -11,6 +11,11 @@ type AProps = HTMLProps<
 
 const defaultProps: AProps = {
     href: 'javascript:void()',
+    style: {
+        'text-decoration': 'none',
+        'font-size': 'inherit',
+        color: 'black',
+    },
 }
 
 export const A: Component<AProps> = (props) => {

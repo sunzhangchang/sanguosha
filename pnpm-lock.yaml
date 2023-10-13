@@ -50,15 +50,18 @@ importers:
 
   web:
     dependencies:
-      '@thriving/shared':
-        specifier: workspace:^
-        version: link:../shared
+      '@solid-primitives/input-mask':
+        specifier: ^0.2.0
+        version: 0.2.0(solid-js@1.7.12)
       '@solidjs/meta':
         specifier: ^0.28.6
         version: 0.28.6(solid-js@1.7.12)
       '@solidjs/router':
         specifier: ^0.8.3
         version: 0.8.3(solid-js@1.7.12)
+      '@thriving/shared':
+        specifier: workspace:^
+        version: link:../shared
       '@vanilla-extract/css':
         specifier: ^1.13.0
         version: 1.13.0
@@ -2156,6 +2159,17 @@ packages:
 
   /@socket.io/component-emitter@3.1.0:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
+    dev: false
+
+  /@solid-primitives/input-mask@0.2.0(solid-js@1.7.12):
+    resolution: {integrity: sha512-bMvx9pOXc2gIvbj2hfU6hHrFDR02ZQFCpU6GaA5CGflgDBbjurO4Wu2qy9Cm5n/1p9wCcu1j/WnnVcAHD+Aoow==}
+    peerDependencies:
+      solid-js: ^1.6.12
+    peerDependenciesMeta:
+      solid-js:
+        optional: true
+    dependencies:
+      solid-js: 1.7.12
     dev: false
 
   /@solidjs/meta@0.28.6(solid-js@1.7.12):

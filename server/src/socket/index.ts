@@ -25,6 +25,13 @@ const handleJoinRoom = (
     )
 
     socket.to(data.roomID).emit(Event.JoinRoom, data.playerName)
+
+    console.log(
+        `emit to id(${socket.id}) (${Event.JoinRoom}):`,
+        data.playerName,
+    )
+
+    socket.to(socket.id).emit(Event.JoinRoom, data.playerName)
 }
 
 export function setup(io: Server<ServerListenEventsMap, ServerEmitEventsMap>) {

@@ -33,3 +33,21 @@ globalStyle('html', {
         },
     },
 })
+
+globalStyle('html, body, #root', {
+    height: '100%',
+    width: '100%',
+})
+
+globalStyle('body', {
+    margin: '0',
+})
+
+globalStyle('a', {
+    textDecoration: 'none',
+    color: 'black',
+})
+
+globalStyle('a:active', {
+    color: 'black',
+})
