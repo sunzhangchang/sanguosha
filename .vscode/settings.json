@@ -10,7 +10,5 @@
     "[typescript]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
-    "conventionalCommits.scopes": [
-        "root"
-    ]
+    "conventionalCommits.scopes": ["root", "web"]
 }

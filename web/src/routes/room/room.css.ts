@@ -43,3 +43,11 @@ export const actionButton = style({
     minHeight: '30px',
     minWidth: '80px',
 })
+
+export const readyList = style({
+    display: 'flex',
+
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+})

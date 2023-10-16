@@ -49,11 +49,7 @@ const Home: Component = () => {
     socket.on(Event.RoomData, (data) => {
         if (roomData.roomID.length === 0) {
             setRoomData(data)
-            navigate(`/room/${data.roomID}`, {
-                state: {
-                    playerName: playerName(),
-                },
-            })
+            navigate(`/room/${data.roomID}`)
         } else {
             setRoomData(data)
         }
@@ -94,6 +90,7 @@ const Home: Component = () => {
                         'min-height': '18px',
                         'min-width': '100px',
                     }}
+                    disabled={playerName().length === 0}
                     onInput={(e) => setRoomID(roomIDMask(e))}
                     onPaste={(e) => setRoomID(roomIDMask(e))}
                 />

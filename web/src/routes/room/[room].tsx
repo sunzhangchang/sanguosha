@@ -1,7 +1,7 @@
 import './room.css'
 
 import { Event, playerNumberInfo } from '@thriving/shared'
-import { Component, Show, createMemo } from 'solid-js'
+import { Component, For, Index, Show, createMemo } from 'solid-js'
 import { Button } from '../../components/button'
 import socket from '../../socket'
 import { useLocation, useNavigate, useParams } from 'solid-start'
@@ -11,16 +11,24 @@ import {
     actionItem,
     infoContainer,
     infoItem,
+    readyList,
     room,
 } from './room.css'
 import { playerData, roomData, setPlayerData, setRoomData } from '../../store'
 import { Input } from '../../components/input'
 import { createSignal } from 'solid-js'
-import { playerNameMask } from '../../utils'
+import { entries, playerNameMask } from '../../utils'
 
 const Room: Component = () => {
     const params = useParams<{ room: string }>()
     console.log(params)
+
+    // todo
+    // if (roomData.creator.length === 0 || roomData.roomID.length === 0) {
+    //     socket.on(Event.RoomData, (data) => {
+    //         setRoomData(data)
+    //     })
+    // }
 
     const playerName = createMemo(() => playerData.playerName)
 
@@ -78,6 +86,15 @@ const Room: Component = () => {
                             {playerName()}
                         </div>
                     </Show>
+                </div>
+                <div class={readyList}>
+                    <Index each={entries(roomData.readyStates)}>
+                        {(item) => (
+                            <div>
+                                {item()[0]}: {item()[1] ? '已准备' : '未准备'}
+                            </div>
+                        )}
+                    </Index>
                 </div>
                 <Show
                     when={playerName().length > 0}
