@@ -32,6 +32,7 @@ export const Button: Component<ButtonProps> = (props) => {
             style={makeStyle({ height: local.h, width: local.w }, local.style)}
             type="button"
             disabled={disabled()}
+            // data-disabled={disabled() ? '' : undefined}
             {...others}
         >
             {contentProps.children}

@@ -2,67 +2,62 @@ import { Server, Socket } from 'socket.io'
 import {
     CreateRoomDataC,
     Event,
-    JoinRoomData,
+    GameMode,
+    JoinRoomDataC,
+    PlayerReadyStates,
     ServerEmitEventsMap,
     ServerListenEventsMap,
 } from '@thriving/shared'
 import { RoomManager } from '../room/manager'
-
-const handleJoinRoom = (
-    socket: Socket,
-    data: { roomID: string; playerName: string },
-) => {
-    socket.join(data.roomID)
-
-    const room = RoomManager.getRoom(data.roomID)
-    if (typeof room === 'undefined') {
-        return
-    }
-
-    console.log(
-        `emit to room(${data.roomID}) (${Event.JoinRoom}):`,
-        data.playerName,
-    )
-
-    socket.to(data.roomID).emit(Event.JoinRoom, data.playerName)
-
-    console.log(
-        `emit to id(${socket.id}) (${Event.JoinRoom}):`,
-        data.playerName,
-    )
-
-    socket.to(socket.id).emit(Event.JoinRoom, data.playerName)
-}
 
 export function setup(io: Server<ServerListenEventsMap, ServerEmitEventsMap>) {
     io.on('connection', (socket) => {
         console.log('connected client', socket.id)
 
         socket.on(Event.JoinRoom, (data) => {
-            handleJoinRoom(socket, data)
+            console.log(`on(${Event.JoinRoom}):`, data)
+            socket.join(data.roomID)
+
+            const room = RoomManager.getRoom(data.roomID)
+            if (typeof room === 'undefined') {
+                return
+            }
+
+            console.log(`emit to room(${data.roomID}) (${Event.JoinRoom}):`, {
+                playerName: data.playerName,
+                gameMode: room.gameMode,
+                roomID: room.id,
+            })
+
+            console.log(socket.rooms)
+
+            socket.emit(Event.JoinRoom, {
+                playerName: data.playerName,
+                gameMode: room.gameMode,
+                roomID: room.id,
+            })
+
+            room.playerJoinOrUnready(data.playerName)
         })
 
-        socket.on(Event.CreateRoom, (data: CreateRoomDataC) => {
-            console.log('on(create_room):', data)
+        socket.on(Event.CreateRoom, (data) => {
+            console.log(`on(${Event.CreateRoom}):`, data)
 
             const room = RoomManager.createRoom(data)
 
-            handleJoinRoom(socket, {
-                playerName: data.creator,
-                roomID: room.id,
-            })
+            socket.join(room.id)
 
-            console.log(`emit(${Event.CreateRoom}):`, {
-                creator: room.creator,
-                gameMode: room.gameMode,
-                roomID: room.id,
-            })
+            room.sendRoomData()
+        })
 
-            socket.emit(Event.CreateRoom, {
-                creator: room.creator,
-                gameMode: room.gameMode,
-                roomID: room.id,
-            })
+        socket.on(Event.ChangeReady, (data) => {
+            const room = RoomManager.getRoom(data.roomID)
+
+            if (typeof room === 'undefined') {
+                return
+            }
+
+            room.changePlayerReadyState(data.playerName, data.readyState)
         })
 
         socket.on('disconnect', (r) => {

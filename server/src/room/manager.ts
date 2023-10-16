@@ -1,33 +1,6 @@
 import { randomInt } from 'crypto'
-import { Player } from '../game/player'
-import { Game } from '../game'
 import { GameMode } from '@thriving/shared'
-
-export class Room {
-    readonly id: string
-    readonly creator: string
-    readonly gameMode: GameMode
-
-    players: Player[] = []
-
-    private game: Game
-
-    constructor({
-        id,
-        creator,
-        gameMode,
-    }: {
-        id: string
-        creator: string
-        gameMode: GameMode
-    }) {
-        this.id = id
-        this.creator = creator
-        this.gameMode = gameMode
-
-        this.game = new Game()
-    }
-}
+import { Room } from '.'
 
 function toRoomIDString(id: number): string {
     return id.toString().padStart(6, '0')

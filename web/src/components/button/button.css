@@ -15,7 +15,7 @@
     border-radius: 4px;
 }
 
-.btn:hover {
+.btn:not(:disabled):hover {
     background: rgba(128, 128, 128, .25);
     border-left: rgba(128, 128, 128, .35) solid 2px;
     border-bottom: rgba(128, 128, 128, .75) solid 2px;
@@ -23,8 +23,16 @@
     cursor: pointer;
 }
 
-.btn:active {
+.btn:not(:disabled):active {
     background: rgba(128, 128, 128, .35);
     border-left: rgba(128, 128, 128, .45) solid 2px;
     border-bottom: rgba(128, 128, 128, .85) solid 2px;
+}
+
+.btn:disabled:hover {
+    background: rgba(128, 128, 128, .25);
+    border-left: rgba(128, 128, 128, .35) solid 2px;
+    border-bottom: rgba(128, 128, 128, .75) solid 2px;
+
+    cursor: not-allowed;
 }

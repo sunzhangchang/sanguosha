@@ -1,6 +1,6 @@
 // import './index.css'
 
-import { createSignal, type Component, Show } from 'solid-js'
+import { createSignal, type Component, Show, createMemo } from 'solid-js'
 import socket from '../socket'
 import { Event } from '@thriving/shared'
 import { Button } from '../components/button'
@@ -8,31 +8,23 @@ import { Input } from '../components/input'
 import { useNavigate } from 'solid-start'
 import { button, gameTitle, home, item } from './index.css'
 import { createInputMask } from '@solid-primitives/input-mask'
+import { playerData, roomData, setRoomData } from '../store'
+import { playerNameMask } from '../utils'
 
 const Home: Component = () => {
     const navigate = useNavigate()
 
-    const playerNameMask = createInputMask([/([\da-zA-Z]|[^\x00-\xff]){0,16}/])
-    const [playerName, setPlayerName] = createSignal('')
+    const playerName = createMemo(() => playerData.playerName)
 
     const createRoom = () => {
         console.log(playerName().trim())
         if (playerName().trim().length > 0) {
             socket.emit(Event.CreateRoom, {
                 creator: playerName(),
-                gameMode: 'single_1v1',
+                gameMode: '5p_identity',
             })
         }
     }
-
-    socket.on(Event.CreateRoom, (data) => {
-        navigate(`/room/${data.roomID}`, {
-            state: {
-                playerName: playerName(),
-                roomData: data,
-            },
-        })
-    })
 
     const roomIDMask = createInputMask('999999')
 
@@ -48,9 +40,22 @@ const Home: Component = () => {
         }
     }
 
-    socket.on(Event.JoinRoom, (name) => {
-        if (name === playerName()) {
-            navigate(`/room/${roomID()}`)
+    socket.on(Event.JoinRoom, (data) => {
+        navigate(`/room/${roomID()}`, {
+            state: data,
+        })
+    })
+
+    socket.on(Event.RoomData, (data) => {
+        if (roomData.roomID.length === 0) {
+            setRoomData(data)
+            navigate(`/room/${data.roomID}`, {
+                state: {
+                    playerName: playerName(),
+                },
+            })
+        } else {
+            setRoomData(data)
         }
     })
 
@@ -66,7 +71,9 @@ const Home: Component = () => {
                         'min-height': '18px',
                         'min-width': '100px',
                     }}
-                    onInput={(e) => setPlayerName(playerNameMask(e))}
+                    onInput={(e) => {
+                        playerData.playerName = playerNameMask(e)
+                    }}
                 />
             </div>
             <div class={item}>
@@ -93,7 +100,9 @@ const Home: Component = () => {
             </div>
             <div class={item}>
                 <Button
-                    disabled={() => roomID().length < 6}
+                    disabled={() =>
+                        playerName().length === 0 || roomID().length < 6
+                    }
                     class={button}
                     onClick={joinRoom}
                 >

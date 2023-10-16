@@ -1,29 +1,48 @@
 export enum Event {
     JoinRoom = 'join_room',
     CreateRoom = 'create_room',
+    RoomData = 'room_data',
+    ChangeReady = 'change_ready',
 }
 
-export type JoinRoomData = { playerName: string; roomID: string }
+export type JoinRoomDataC = {
+    roomID: string
+    playerName: string
+}
 
-export type GameMode = 'single_1v1' | 'double_1v1'
+export type JoinRoomDataS = {
+    roomID: string
+    playerName: string
+    gameMode: GameMode
+}
+
+export type GameMode = '5p_identity'
 
 export type CreateRoomDataC = {
     creator: string
     gameMode: GameMode
 }
 
+export type PlayerReadyStates = Record<string, boolean>
+
 export type RoomData = {
     creator: string
     gameMode: GameMode
     roomID: string
+    readyStates: PlayerReadyStates
 }
 
 export type ServerListenEventsMap = {
     [Event.CreateRoom]: (data: CreateRoomDataC) => void
-    [Event.JoinRoom]: (data: JoinRoomData) => void
+    [Event.JoinRoom]: (data: JoinRoomDataC) => void
+    [Event.ChangeReady]: (data: {
+        roomID: string
+        playerName: string
+        readyState: boolean
+    }) => void
 }
 
 export type ServerEmitEventsMap = {
-    [Event.CreateRoom]: (data: RoomData) => void
-    [Event.JoinRoom]: (data: string) => void
+    [Event.JoinRoom]: (data: JoinRoomDataS) => void
+    [Event.RoomData]: (data: RoomData) => void
 }
