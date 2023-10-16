@@ -119,37 +119,11 @@ const Room: Component = () => {
                     }
                 >
                     <div class={actionItem}>
-                        <Show
-                            when={playerName() === roomData.creator}
-                            fallback={
-                                <Button
-                                    class={actionButton}
-                                    onClick={toggleReady}
-                                >
-                                    {roomData.readyStates[playerName()]
-                                        ? '取消准备'
-                                        : '准备'}
-                                </Button>
-                            }
-                        >
-                            <Button
-                                class={actionButton}
-                                disabled={() => {
-                                    const readyStates = Object.entries(
-                                        roomData.readyStates,
-                                    )
-                                    return (
-                                        readyStates.length <
-                                            playerNumberInfo[
-                                                roomData.gameMode
-                                            ] ||
-                                        !readyStates.every(([k, v]) => v)
-                                    )
-                                }}
-                            >
-                                开始游戏
-                            </Button>
-                        </Show>
+                        <Button class={actionButton} onClick={toggleReady}>
+                            {roomData.readyStates[playerName()]
+                                ? '取消准备'
+                                : '准备'}
+                        </Button>
                     </div>
                 </Show>
                 <div class={actionItem}>

@@ -3,6 +3,7 @@ export enum Event {
     CreateRoom = 'create_room',
     RoomData = 'room_data',
     ChangeReady = 'change_ready',
+    GameStart = 'game_start',
 }
 
 export type JoinRoomDataC = {
@@ -42,7 +43,10 @@ export type ServerListenEventsMap = {
     }) => void
 }
 
+export type GameStartData = {}
+
 export type ServerEmitEventsMap = {
     [Event.JoinRoom]: (data: JoinRoomDataS) => void
     [Event.RoomData]: (data: RoomData) => void
+    [Event.GameStart]: (data: GameStartData) => void
 }
