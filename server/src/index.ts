@@ -3,7 +3,7 @@ import Koa from 'koa'
 import { Server } from 'socket.io'
 import { setup } from './socket'
 import cors from '@koa/cors'
-import { ServerEmitEventsMap, ServerListenEventsMap } from '@thriving/shared'
+import { ServerEmitEventsMap, ServerListenEventsMap } from '@thriving/shared/src/network'
 
 const app = new Koa()
 

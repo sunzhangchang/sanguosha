@@ -3,7 +3,7 @@ import {
     GameMode,
     PlayerReadyStates,
     ServerEmitEventsMap,
-} from '@thriving/shared'
+} from '@thriving/shared/src/network'
 import { Player } from '../game/player'
 import { Game } from '../game'
 import io from '..'
@@ -54,11 +54,13 @@ export class Room {
     }
 
     sendRoomData() {
-        this.#ioEmit(Event.RoomData, {
-            creator: this.creator,
-            gameMode: this.gameMode,
-            readyStates: this.playerReadyStates,
-            roomID: this.id,
+        this.#ioEmit(Event.SPacketRoomData, {
+            data: {
+                creator: this.creator,
+                gameMode: this.gameMode,
+                readyStates: this.playerReadyStates,
+                roomID: this.id,
+            }
         })
     }
 

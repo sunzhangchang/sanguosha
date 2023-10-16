@@ -1,6 +1,6 @@
 import './room.css'
 
-import { Event, playerNumberInfo } from '@thriving/shared'
+import { Event } from '@thriving/shared/src/network'
 import { Component, For, Index, Show, createMemo } from 'solid-js'
 import { Button } from '../../components/button'
 import socket from '../../socket'
@@ -45,7 +45,7 @@ const Room: Component = () => {
     }
 
     const toggleReady = () => {
-        socket.emit(Event.ChangeReady, {
+        socket.emit(Event.CPacketChangeReady, {
             playerName: playerName(),
             readyState: !roomData.readyStates[playerName()],
             roomID: roomData.roomID,

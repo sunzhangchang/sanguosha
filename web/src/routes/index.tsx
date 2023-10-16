@@ -2,7 +2,7 @@
 
 import { createSignal, type Component, Show, createMemo } from 'solid-js'
 import socket from '../socket'
-import { Event } from '@thriving/shared'
+import { Event } from '@thriving/shared/src/network'
 import { Button } from '../components/button'
 import { Input } from '../components/input'
 import { useNavigate } from 'solid-start'
@@ -19,7 +19,7 @@ const Home: Component = () => {
     const createRoom = () => {
         console.log(playerName().trim())
         if (playerName().trim().length > 0) {
-            socket.emit(Event.CreateRoom, {
+            socket.emit(Event.CPacketCreateRoom, {
                 creator: playerName(),
                 gameMode: '5p_identity',
             })
@@ -33,20 +33,20 @@ const Home: Component = () => {
     const joinRoom = () => {
         console.log(playerName().trim())
         if (playerName().trim().length > 0 && /[\d]{6}/.test(roomID())) {
-            socket.emit(Event.JoinRoom, {
+            socket.emit(Event.CPacketJoinRoom, {
                 playerName: playerName(),
                 roomID: roomID(),
             })
         }
     }
 
-    socket.on(Event.JoinRoom, (data) => {
+    socket.on(Event.SPacketJoinRoomData, (data) => {
         navigate(`/room/${roomID()}`, {
             state: data,
         })
     })
 
-    socket.on(Event.RoomData, (data) => {
+    socket.on(Event.SPacketRoomData, ({data}) => {
         if (roomData.roomID.length === 0) {
             setRoomData(data)
             navigate(`/room/${data.roomID}`)

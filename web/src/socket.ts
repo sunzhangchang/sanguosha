@@ -1,9 +1,7 @@
 import {
-    RoomData,
-    Event,
     ServerEmitEventsMap,
     ServerListenEventsMap,
-} from '@thriving/shared'
+} from '@thriving/shared/src/network'
 import { Socket, io } from 'socket.io-client'
 
 const socket = io('ws://localhost:3001', {

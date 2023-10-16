@@ -1,4 +1,4 @@
-import { RoomData } from '@thriving/shared'
+import { RoomData } from '@thriving/shared/src/network'
 import { createStore } from 'solid-js/store'
 
 export const [playerData, setPlayerData] = createStore<{
