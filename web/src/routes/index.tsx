@@ -8,7 +8,7 @@ import { Input } from '../components/input'
 import { useNavigate } from 'solid-start'
 import { button, gameTitle, home, item } from './index.css'
 import { createInputMask } from '@solid-primitives/input-mask'
-import { playerData, roomData, setRoomData } from '../store'
+import { playerData, roomData, setPlayerData, setRoomData } from '../store'
 import { playerNameMask } from '../utils'
 
 const Home: Component = () => {
@@ -72,7 +72,7 @@ const Home: Component = () => {
                         'min-width': '100px',
                     }}
                     onInput={(e) => {
-                        playerData.playerName = playerNameMask(e)
+                        setPlayerData('playerName', playerNameMask(e))
                     }}
                 />
             </div>

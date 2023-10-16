@@ -13,7 +13,7 @@ import {
     infoItem,
     room,
 } from './room.css'
-import { playerData, roomData, setRoomData } from '../../store'
+import { playerData, roomData, setPlayerData, setRoomData } from '../../store'
 import { Input } from '../../components/input'
 import { createSignal } from 'solid-js'
 import { playerNameMask } from '../../utils'
@@ -48,7 +48,7 @@ const Room: Component = () => {
 
     const confirmPlayerName = () => {
         if (tmpPlayerName().trim().length > 0) {
-            playerData.playerName = tmpPlayerName()
+            setPlayerData('playerName', tmpPlayerName())
         }
     }
 
